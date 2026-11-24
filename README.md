@@ -1,337 +1,285 @@
-# ðŸŽ¬ StreamHub â€“ Full-Stack Video Streaming Platform
 
-<p align="center">
-  A Django-based video streaming and sharing platform where users can upload, watch, manage, and interact with videos.
-</p>
+# StreamHub - Full-Stack Video Streaming Platform
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Python-3.11-blue?logo=python" alt="Python">
-  <img src="https://img.shields.io/badge/Django-4.2-green?logo=django" alt="Django">
-  <img src="https://img.shields.io/badge/MySQL-8.0-orange?logo=mysql" alt="MySQL">
-  <img src="https://img.shields.io/badge/Bootstrap-5.3-purple?logo=bootstrap" alt="Bootstrap">
-  <img src="https://img.shields.io/badge/Status-Development-success" alt="Status">
-</p>
+A Django-based video streaming and sharing application where users can create accounts, manage channels, upload videos, watch content, and interact with other users.
 
----
+## Project Overview
 
-## ðŸ“Œ Project Overview
+StreamHub is a full-stack web application built with Python and Django. It provides video-sharing features alongside user accounts, channel management, playlists, engagement tools, watch history, and creator analytics.
 
-**StreamHub** is a full-stack video streaming and sharing web application developed using Python and Django.
+The project uses MySQL for database storage and a responsive frontend built with HTML, CSS, Bootstrap, and JavaScript.
 
-The platform allows users to create accounts, manage channels, upload videos, watch content, interact with other users, and organize videos into playlists.
+## Features
 
-StreamHub provides a video-sharing experience with features such as video playback, search, comments, likes, dislikes, channel subscriptions, watch history, and creator analytics.
+### 1. User Authentication
+- User registration
+- Secure login and logout
+- Session-based authentication
+- Protected access to account-specific features
+- User-specific content and activity
 
-The project demonstrates the development of a database-driven web application using Django, MySQL, frontend technologies, and user authentication.
+### 2. Channel Management
+- Create and manage creator channels
+- View channel information
+- Display uploaded videos
+- Subscribe to channels
+- View creator content
 
-## âœ¨ Features
+### 3. Video Management
+- Upload videos
+- Add video titles and descriptions
+- Upload video thumbnails
+- Browse available videos
+- Search for videos
+- Organize and manage video content
 
-### ðŸ” User Authentication
-- User registration.
-- Secure login and logout.
-- Session-based authentication.
-- Authenticated access to protected features.
-- User-specific content and activity.
+### 4. Video Playback
+- Browser-based video player
+- HTML5 video playback
+- Video controls
+- Related video suggestions
+- Video viewing functionality
 
-### ðŸ“¹ Video Management
-- Upload videos.
-- Add video titles and descriptions.
-- Upload video thumbnails.
-- Watch uploaded videos.
-- Manage published videos.
-- Delete videos.
-- Display video information and view counts.
+### 5. User Engagement
+- Like videos
+- Dislike videos
+- Post comments
+- View comments
+- Subscribe to creators
 
-### â–¶ï¸ Video Playback
-- HTML5 video player.
-- Play and pause controls.
-- Video seeking and playback controls.
-- Video thumbnail preview.
-- Watch progress tracking.
-- Watch history.
+### 6. Playlist Management
+- Create playlists
+- Add videos to playlists
+- View playlist contents
+- Organize videos into collections
 
-### ðŸ‘¤ Channel Management
-- Create a channel.
-- Display channel information.
-- View channel videos.
-- Manage your own channel.
-- Subscribe to other channels.
-- Display subscriber counts.
+### 7. Watch History
+- Track watched videos
+- View previously watched content
+- Access watch history
 
-### ðŸ‘ User Engagement
-- Like videos.
-- Dislike videos.
-- Add comments.
-- Display comments.
-- Track video views.
-- Prevent unauthorized interactions.
+### 8. Creator Dashboard
+- Creator dashboard
+- Video and channel activity information
+- Creator analytics
 
-### ðŸ“‚ Playlist Management
-- Create playlists.
-- Set playlist visibility.
-- Add videos to playlists.
-- View playlist details.
-- Organize videos into collections.
+## Technology Stack
 
-### ðŸ”Ž Search and Discovery
-- Search videos.
-- Browse video categories.
-- Explore published videos.
-- View related video recommendations.
-
-### ðŸ“Š Creator Dashboard
-- View uploaded videos.
-- Monitor video views.
-- Access creator analytics.
-- Manage published content.
-
-### ðŸ•’ Watch History
-- Track watched videos.
-- Maintain user watch history.
-- Track playback progress.
-
-### ðŸ“± Responsive Interface
-- Bootstrap 5 layout.
-- Responsive navigation.
-- Video cards and thumbnails.
-- Mobile-friendly interface.
-- Interactive frontend components.
-
----
-
-## ðŸ› ï¸ Technology Stack
-
-| Technology | Purpose |
+| Component | Technology |
 |---|---|
-| Python 3.11 | Backend programming |
-| Django 4.2 | Web application framework |
-| MySQL 8.0 | Relational database |
-| HTML5 | Web page structure |
-| CSS3 | Styling |
-| Bootstrap 5 | Responsive frontend |
-| JavaScript | Frontend interactions |
-| Django ORM | Database operations |
-| Django Authentication | User authentication |
-| HTML5 Video | Video playback |
-| Git and GitHub | Version control |
+| Backend | Python |
+| Web Framework | Django 4.2 |
+| Database | MySQL 8.0 |
+| Frontend | HTML5, CSS3 |
+| UI Framework | Bootstrap 5 |
+| Programming | JavaScript |
+| Video Player | HTML5 Video Player |
+| Version Control | Git and GitHub |
 
----
-
-## ðŸ—ï¸ Application Architecture
-
-StreamHub follows a Django-based application architecture.
+## Project Architecture
 
 ```text
-                 â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-                 â”‚       USER / BROWSER    â”‚
-                 â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                              â”‚
-                              â–¼
-                 â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-                 â”‚      FRONTEND UI        â”‚
-                 â”‚ HTML, CSS, Bootstrap   â”‚
-                 â”‚       JavaScript        â”‚
-                 â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                              â”‚
-                              â–¼
-                 â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-                 â”‚     DJANGO BACKEND      â”‚
-                 â”‚                         â”‚
-                 â”‚ Views and URLs          â”‚
-                 â”‚ Authentication          â”‚
-                 â”‚ Business Logic          â”‚
-                 â”‚ Video Management        â”‚
-                 â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                              â”‚
-                              â–¼
-                 â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-                 â”‚       DJANGO ORM       â”‚
-                 â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                              â”‚
-                              â–¼
-                 â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-                 â”‚       MYSQL 8.0         â”‚
-                 â”‚                         â”‚
-                 â”‚ Users and Channels      â”‚
-                 â”‚ Videos and Playlists    â”‚
-                 â”‚ Comments and Reactions  â”‚
-                 â”‚ Subscriptions/History   â”‚
-                 â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                  STREAMHUB
+                      |
+          -------------------------
+          |                       |
+       FRONTEND                 BACKEND
+          |                       |
+    HTML / CSS / JS             Django
+          |                       |
+     Bootstrap 5              Django Views
+          |                       |
+    User Interface           Application Logic
+                                  |
+                         ------------------
+                         |                |
+                       Models           Forms
+                         |                |
+                         ------------------
+                                  |
+                              MySQL
+                                  |
+                         Database Storage
 ```
 
----
-
-## ðŸ“ Project Structure
-
-The project is organized into Django applications, templates, static assets, configuration files, and media storage.
+## Project Structure
 
 ```text
-StreamHub-Full-Stack-Video-Streaming-Platform/
-â”‚
-â”œâ”€â”€ manage.py
-â”‚
-â”œâ”€â”€ .venv/
-â”‚
-â”œâ”€â”€ .env
-â”œâ”€â”€ .gitignore
-â”œâ”€â”€ requirements.txt
-â”œâ”€â”€ README.md
-â”‚
-â”œâ”€â”€ templates/
-â”‚   â”œâ”€â”€ base.html
-â”‚   â”œâ”€â”€ registration/
-â”‚   â””â”€â”€ videos/
-â”‚       â”œâ”€â”€ watch.html
-â”‚       â”œâ”€â”€ playlists.html
-â”‚       â””â”€â”€ ...
-â”‚
-â”œâ”€â”€ static/
-â”‚   â”œâ”€â”€ css/
-â”‚   â”‚   â””â”€â”€ style.css
-â”‚   â””â”€â”€ js/
-â”‚       â””â”€â”€ app.js
-â”‚
-â”œâ”€â”€ media/
-â”‚   â”œâ”€â”€ videos/
-â”‚   â””â”€â”€ thumbnails/
-â”‚
-â”œâ”€â”€ videos/
-â”‚   â”œâ”€â”€ migrations/
-â”‚   â”œâ”€â”€ models.py
-â”‚   â”œâ”€â”€ views.py
-â”‚   â”œâ”€â”€ forms.py
-â”‚   â”œâ”€â”€ urls.py
-â”‚   â””â”€â”€ ...
-â”‚
-â””â”€â”€ [Django project configuration directory]
-    â”œâ”€â”€ settings.py
-    â”œâ”€â”€ urls.py
-    â”œâ”€â”€ asgi.py
-    â””â”€â”€ wsgi.py
+video-streaming-platform/
+|
+|-- manage.py
+|-- requirements.txt
+|-- .env.example
+|-- .gitignore
+|-- README.md
+|
+|-- video_stream/
+|   |-- __init__.py
+|   |-- settings.py
+|   |-- urls.py
+|   |-- wsgi.py
+|
+|-- videos/
+|   |-- migrations/
+|   |-- __init__.py
+|   |-- admin.py
+|   |-- apps.py
+|   |-- forms.py
+|   |-- models.py
+|   |-- tests.py
+|   |-- urls.py
+|   |-- views.py
+|
+|-- templates/
+|   |-- base.html
+|   |-- registration/
+|   |-- videos/
+|
+|-- static/
+|   |-- css/
+|   |-- js/
+|
+|-- media/
+|   |-- channels/
+|   |-- thumbnails/
+|   |-- videos/
+|
+|-- .venv/
 ```
 
-*Note: The structure above illustrates the main project components. Your actual repository may contain additional files and folders.*
+Note: `.venv/` and uploaded media are local development files and are excluded from GitHub.
 
----
+## Requirements
 
-## âš™ï¸ Installation and Setup
+Install the following software before running the project:
 
-Follow these steps to run StreamHub locally.
+- Python 3.11 or compatible version
+- MySQL Server 8.0
+- Git
+- Visual Studio Code or another code editor
+- Modern web browser
 
-### 1. Prerequisites
+## Installation and Setup
 
-Install the following software:
-
-- Python 3.11 or later.
-- MySQL Server 8.0.
-- Git.
-- Visual Studio Code or another code editor.
-- A modern web browser.
-
-### 2. Clone the Repository
+### Step 1: Clone the Repository
 
 ```bash
 git clone https://github.com/prashanthreddy-134/StreamHub-Full-Stack-Video-Streaming-Platform.git
 ```
 
-Navigate to the project directory:
+Navigate into the project directory:
 
 ```bash
 cd StreamHub-Full-Stack-Video-Streaming-Platform
 ```
 
-### 3. Create a Virtual Environment
+### Step 2: Create a Virtual Environment
 
-```bash
-python -m venv .venv
+For Windows PowerShell:
+
+```powershell
+py -3.11 -m venv .venv
 ```
 
-Activate it on Windows PowerShell:
+Activate the virtual environment:
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
 ```
 
-For Windows Command Prompt:
+If PowerShell blocks activation, run:
 
-```cmd
-.venv\Scripts\activate.bat
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 ```
 
-### 4. Install Dependencies
+Then activate again:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+### Step 3: Install Dependencies
+
+Upgrade pip:
 
 ```bash
 python -m pip install --upgrade pip
 ```
 
-Install the project requirements:
+Install project dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 5. Configure MySQL
+### Step 4: Configure MySQL Database
 
-Start your MySQL Server.
-
-Open MySQL Workbench or the MySQL command-line client and create the database:
+Open MySQL and execute:
 
 ```sql
 CREATE DATABASE video_db
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_unicode_ci;
-```
 
-Create a database user:
-
-```sql
 CREATE USER 'video_user'@'localhost'
-IDENTIFIED BY 'YOUR_DATABASE_PASSWORD';
-```
+IDENTIFIED BY 'choose-a-strong-password';
 
-Grant database permissions:
-
-```sql
 GRANT ALL PRIVILEGES ON video_db.*
 TO 'video_user'@'localhost';
 
 FLUSH PRIVILEGES;
 ```
 
-Replace `YOUR_DATABASE_PASSWORD` with your own password.
+Replace the example password with your own strong MySQL password.
 
-### 6. Configure Environment Variables
+If you already have a MySQL account, you can configure the project to use that account instead.
 
-Create a `.env` file in the project root.
+### Step 5: Configure Environment Variables
 
-Add the environment variables expected by your Django `settings.py`.
+Copy the example environment file:
 
-For example:
+```powershell
+Copy-Item .env.example .env
+```
 
-```env
-SECRET_KEY=your_django_secret_key
+Open `.env` and configure the following values:
+
+```dotenv
+SECRET_KEY=replace-with-a-long-random-secret
 DEBUG=True
-
+ALLOWED_HOSTS=127.0.0.1,localhost
+DB_ENGINE=mysql
 DB_NAME=video_db
 DB_USER=video_user
-DB_PASSWORD=YOUR_DATABASE_PASSWORD
-DB_HOST=localhost
+DB_PASSWORD=your-local-mysql-password
+DB_HOST=127.0.0.1
 DB_PORT=3306
 ```
 
-**Important:** Check the database and environment-variable configuration in your actual `settings.py`. The variable names in this example must match what your project reads. Never commit your real `.env` file or credentials to GitHub.
+Important:
+- Replace the example database password with your local MySQL password.
+- Keep `.env` private.
+- Never upload actual credentials to GitHub.
+- The `.env` file is excluded through `.gitignore`.
 
-### 7. Apply Database Migrations
+### Step 6: Apply Database Migrations
+
+Run:
 
 ```bash
 python manage.py makemigrations
 ```
 
+Then:
+
 ```bash
 python manage.py migrate
 ```
 
-### 8. Create an Administrator Account
+### Step 7: Create an Administrator Account
+
+Run:
 
 ```bash
 python manage.py createsuperuser
@@ -339,201 +287,119 @@ python manage.py createsuperuser
 
 Follow the instructions to create your administrator account.
 
-### 9. Run the Development Server
+### Step 8: Start the Development Server
+
+Run:
 
 ```bash
 python manage.py runserver
 ```
 
-Open your browser:
+Open the following URL in your browser:
 
-**http://127.0.0.1:8000/**
+```text
+http://127.0.0.1:8000/
+```
 
-Your local StreamHub application should now be accessible.
+The StreamHub application will be available locally.
 
----
+To stop the development server, press `CTRL + C`.
 
-## ðŸŒ Application Pages
+## Application Pages
 
 | Page | URL |
 |---|---|
-| Home | `/` |
-| Registration | `/register/` |
-| Login | `/accounts/login/` |
-| Upload Video | `/upload/` |
-| My Channel | `/my-channel/` |
-| Playlists | `/playlists/` |
-| Creator Dashboard | `/dashboard/` |
-| Watch History | `/history/` |
-| Django Admin | `/admin/` |
+| Home | http://127.0.0.1:8000/ |
+| Login | http://127.0.0.1:8000/accounts/login/ |
+| Upload Video | http://127.0.0.1:8000/upload/ |
+| Playlists | http://127.0.0.1:8000/playlists/ |
+| Creator Dashboard | http://127.0.0.1:8000/dashboard/ |
+| Watch History | http://127.0.0.1:8000/history/ |
 
 Some pages require authentication.
 
----
+## Database Description
 
-## ðŸ—„ï¸ Database
+The application uses MySQL to store its application data.
 
-StreamHub uses MySQL 8.0 as its relational database.
+The database supports information related to:
 
-The Django ORM manages database interactions and model relationships.
+- User accounts
+- Creator channels
+- Uploaded videos
+- Video comments
+- Likes and dislikes
+- Channel subscriptions
+- Playlists
+- Watch history
 
-The database supports application information such as:
+The Django models define the database structure, while Django migrations manage database schema changes.
 
-- User accounts.
-- Channel information.
-- Uploaded video details.
-- Video thumbnails and media references.
-- Comments and user reactions.
-- Channel subscriptions.
-- Playlists and playlist entries.
-- Watch history and playback progress.
+## Testing
 
-Database tables are managed through Django models and migrations.
-
----
-
-## ðŸ”’ Security
-
-The application uses Django's built-in security and authentication features.
-
-Security practices include:
-
-- Password hashing through Django authentication.
-- CSRF protection for forms.
-- Authentication checks for protected actions.
-- Permission checks for user-owned content.
-- Environment-based configuration for sensitive values.
-- Database credentials kept outside source control.
-
-Never upload database passwords, secret keys, private user data, or production credentials to a public repository.
-
----
-
-## ðŸ§ª Testing
-
-Run Django's system checks:
-
-```bash
-python manage.py check
-```
-
-Run database migrations:
-
-```bash
-python manage.py migrate
-```
-
-Run the Django test suite:
+Run the Django automated test suite:
 
 ```bash
 python manage.py test
 ```
 
-Manually verify the following application workflows:
+The project also includes a PowerShell helper script named `test.ps1`.
 
-1. Register a new account.
-2. Log in and log out.
-3. Create a channel.
-4. Upload a video and thumbnail.
-5. Play, pause and seek through a video.
-6. Search for videos.
-7. Like and dislike videos.
-8. Add and view comments.
-9. Subscribe to another channel.
-10. Create a playlist and save videos.
-11. Check watch history.
-12. Open the creator dashboard.
+## Security Considerations
 
----
+- Environment variables are used for sensitive configuration.
+- The `.env` file is excluded from version control.
+- The virtual environment is excluded from GitHub.
+- Uploaded media files are excluded from the repository.
+- Django authentication protects account-specific features.
 
-## ðŸ“¸ Screenshots
+For production deployment:
 
-Screenshots of the working application should be added here.
+- Generate a strong and unique Django secret key.
+- Set `DEBUG=False`.
+- Configure the production domain in `ALLOWED_HOSTS`.
+- Use a secure database password.
+- Enable HTTPS.
+- Configure persistent storage for uploaded media.
+- Review file-upload validation and access controls.
 
-Suggested screenshots:
+Do not use the development secret key or development configuration in production.
 
-| No. | Screenshot |
-|---|---|
-| 1 | StreamHub Home Page |
-| 2 | User Registration and Login |
-| 3 | Video Upload Page |
-| 4 | Video Playback Page |
-| 5 | Channel Page |
-| 6 | Playlist Management |
-| 7 | Comments and Reactions |
-| 8 | Creator Dashboard |
-| 9 | Watch History |
-| 10 | Video Search Results |
+## Deployment Status
 
-Create a `screenshots` folder in the repository and add your actual application screenshots.
+The source code is published on GitHub.
 
-Example:
+GitHub repository:
 
-```text
-screenshots/
-â”œâ”€â”€ home.png
-â”œâ”€â”€ login.png
-â”œâ”€â”€ upload.png
-â”œâ”€â”€ video-playback.png
-â”œâ”€â”€ channel.png
-â”œâ”€â”€ playlists.png
-â”œâ”€â”€ comments.png
-â”œâ”€â”€ dashboard.png
-â””â”€â”€ history.png
-```
+https://github.com/prashanthreddy-134/StreamHub-Full-Stack-Video-Streaming-Platform
 
-After adding the images, display them here using Markdown:
+Publishing the source code does not automatically deploy the application. A public deployment requires a hosting provider, production database, environment variables, static-file configuration, and persistent media storage.
 
-```markdown
-![StreamHub Home Page](screenshots/home.png)
+## Future Enhancements
 
-![Video Playback](screenshots/video-playback.png)
+Potential future improvements include:
 
-![Creator Dashboard](screenshots/dashboard.png)
-```
+- Adaptive bitrate video streaming
+- Video transcoding
+- Cloud-based media storage
+- Improved content moderation
+- Video recommendations
+- Expanded automated testing
+- Continuous integration and deployment
+- Performance monitoring
 
----
+These are proposed enhancements and are not claims about currently implemented functionality.
 
-## ðŸš€ Future Enhancements
+## Author
 
-Potential improvements for future versions include:
-
-- Adaptive bitrate streaming.
-- Video transcoding and compression.
-- Video recommendations.
-- Real-time notifications.
-- Advanced creator analytics.
-- Video reporting and moderation.
-- REST API integration.
-- Cloud-based media storage.
-- Improved video search and filtering.
-- Deployment with production-grade infrastructure.
-
----
-
-## ðŸ‘¨â€ðŸ’» Author
-
-**Prashanth Reddy S**
+**Prashanth Reddy**
 
 Information Science and Engineering Student
-Brindavan College of Engineering, Bengaluru
 
-GitHub: [@prashanthreddy-134](https://github.com/prashanthreddy-134)
+GitHub: https://github.com/prashanthreddy-134
 
-Project Repository: [StreamHub â€“ Full-Stack Video Streaming Platform](https://github.com/prashanthreddy-134/StreamHub-Full-Stack-Video-Streaming-Platform)
+## License
 
----
+No open-source license is currently specified.
 
-## ðŸ“„ License
-
-This project is intended for educational and learning purposes.
-
-A formal open-source license has not been specified. All rights remain with the project author unless a license is added to the repository.
-
----
-
-## â­ Support
-
-If you find this project useful, consider giving the repository a star on GitHub.
-
-**StreamHub â€“ Watch. Share. Connect.**
+An appropriate license can be added if the project is intended for public reuse, modification, or distribution.
