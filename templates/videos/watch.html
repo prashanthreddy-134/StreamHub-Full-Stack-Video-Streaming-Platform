@@ -1,0 +1,220 @@
+
+{% extends 'base.html' %}
+
+{% block title %}{{ video.title }} · StreamHub{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+
+    <!-- Main video section -->
+    <div class="col-lg-8">
+
+        <!-- Video player -->
+        <div class="player-wrap">
+            <video
+                id="streamhub-player"
+                data-progress-url="{% if user.is_authenticated %}{% url 'update_watch_time' video.slug %}{% endif %}"
+                data-authenticated="{{ user.is_authenticated|yesno:'true,false' }}"
+                class="video-player"
+                controls
+                playsinline
+                preload="metadata"
+                {% if video.thumbnail %}poster="{{ video.thumbnail.url }}"{% endif %}
+            >
+                <source src="{{ video.video_file.url }}">
+                Your browser does not support HTML5 video.
+            </video>
+        </div>
+
+        <!-- Video title -->
+        <h1 class="watch-title mt-3">{{ video.title }}</h1>
+
+        <!-- Channel and actions -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 py-3 border-bottom border-secondary">
+
+            <div class="d-flex align-items-center gap-3">
+                <div class="avatar avatar-lg">
+                    {{ video.channel.name|first|upper }}
+                </div>
+
+                <div>
+                    <a class="channel-link" href="{% url 'channel_detail' video.channel.slug %}">
+                        {{ video.channel.name }}
+                    </a>
+
+                    <div class="text-secondary small">
+                        {{ video.channel.subscriber_count }} subscribers
+                    </div>
+                </div>
+
+                {% if user.is_authenticated and user != video.channel.user %}
+                    <form method="post" action="{% url 'subscribe' video.channel.slug %}">
+                        {% csrf_token %}
+                        <button class="btn btn-accent btn-sm" type="submit">
+                            {% if is_subscribed %}
+                                Subscribed
+                            {% else %}
+                                Subscribe
+                            {% endif %}
+                        </button>
+                    </form>
+                {% endif %}
+            </div>
+
+            <!-- Like and dislike -->
+            <div class="d-flex gap-2">
+                {% if user.is_authenticated %}
+                    <form method="post" action="{% url 'react' video.slug 'like' %}">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-light btn-sm" type="submit">
+                            👍 {{ video.like_count }}
+                        </button>
+                    </form>
+
+                    <form method="post" action="{% url 'react' video.slug 'dislike' %}">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-light btn-sm" type="submit">
+                            👎 {{ video.dislike_count }}
+                        </button>
+                    </form>
+                {% else %}
+                    <span class="text-secondary small">
+                        👍 {{ video.like_count }} · 👎 {{ video.dislike_count }}
+                    </span>
+                {% endif %}
+            </div>
+
+        </div>
+
+        <!-- Save to playlist -->
+        {% if user.is_authenticated and user_playlists %}
+            <div class="description-box mt-3">
+                <h5 class="mb-3">Save to Playlist</h5>
+
+                <form
+                    method="post"
+                    action="{% url 'add_to_playlist' video.id %}"
+                    class="d-flex flex-wrap gap-2 align-items-center"
+                >
+                    {% csrf_token %}
+
+                    <select
+                        name="playlist"
+                        class="form-select"
+                        style="max-width: 320px;"
+                        required
+                    >
+                        <option value="">Choose a playlist</option>
+
+                        {% for playlist in user_playlists %}
+                            <option value="{{ playlist.id }}">
+                                {{ playlist.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+
+                    <button class="btn btn-accent btn-sm" type="submit">
+                        + Save
+                    </button>
+                </form>
+            </div>
+
+        {% elif user.is_authenticated %}
+            <div class="description-box mt-3">
+                <h5>Save to Playlist</h5>
+                <p class="text-secondary mb-2">
+                    You haven't created a playlist yet.
+                </p>
+                <a href="{% url 'playlists' %}" class="btn btn-accent btn-sm">
+                    Create Playlist
+                </a>
+            </div>
+        {% endif %}
+
+        <!-- Video description -->
+        <div class="description-box mt-3">
+            <strong>{{ video.views }} views</strong>
+            · {{ video.created_at|date:'M d, Y' }}
+
+            <p class="mt-2 mb-0">
+                {{ video.description|linebreaksbr }}
+            </p>
+        </div>
+
+        <!-- Comments -->
+        <section class="mt-4">
+            <h3>Comments ({{ comments|length }})</h3>
+
+            {% if user.is_authenticated %}
+                <form
+                    method="post"
+                    action="{% url 'add_comment' video.slug %}"
+                    class="comment-form"
+                >
+                    {% csrf_token %}
+                    {{ comment_form.content }}
+
+                    <button class="btn btn-accent mt-2" type="submit">
+                        Comment
+                    </button>
+                </form>
+            {% else %}
+                <p class="text-secondary">
+                    <a href="{% url 'login' %}">Log in</a>
+                    to join the conversation.
+                </p>
+            {% endif %}
+
+            {% for comment in comments %}
+                <div class="comment">
+                    <div class="avatar">
+                        {{ comment.user.username|first|upper }}
+                    </div>
+
+                    <div>
+                        <strong>{{ comment.user.username }}</strong>
+
+                        <span class="text-secondary small ms-2">
+                            {{ comment.created_at|timesince }} ago
+                        </span>
+
+                        <p>{{ comment.content|linebreaksbr }}</p>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="text-secondary mt-3">
+                    No comments yet. Start the conversation.
+                </p>
+            {% endfor %}
+        </section>
+
+    </div>
+
+    <!-- Related videos -->
+    <aside class="col-lg-4">
+        <h4 class="mb-3">Up next</h4>
+
+        {% for item in related %}
+            <a class="related-card" href="{% url 'watch' item.slug %}">
+
+                <div class="related-thumb">
+                    {% if item.thumbnail %}
+                        <img src="{{ item.thumbnail.url }}" alt="{{ item.title }}">
+                    {% else %}
+                        ▶
+                    {% endif %}
+                </div>
+
+                <div>
+                    <strong>{{ item.title }}</strong>
+                    <p>{{ item.channel.name }} · {{ item.views }} views</p>
+                </div>
+
+            </a>
+        {% empty %}
+            <p class="text-secondary">More videos coming soon.</p>
+        {% endfor %}
+    </aside>
+
+</div>
+{% endblock %}
